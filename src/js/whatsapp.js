@@ -1,5 +1,5 @@
 /* =========================================================================
-   EMIL · WhatsApp-First-Buchung
+   RUBEN · WhatsApp-First-Buchung
    Baut den wa.me-Link mit vorbefüllter Nachricht aus dem Mini-Interview.
    Der Nutzer sieht die Nachricht in WhatsApp und entscheidet selbst
    über das Absenden — hier wird nichts übertragen oder gespeichert.
@@ -27,8 +27,8 @@ export function initWhatsApp() {
   };
 
   const buildMessage = () => {
-    const parts = ["Hey Emil!"];
-    if (state.ort === "Woanders") parts.push("Ich komme nicht direkt aus Dresden oder Leipzig.");
+    const parts = ["Hey Ruben!"];
+    if (state.ort === "Woanders") parts.push("Ich komme nicht direkt aus Leipzig.");
     else if (state.ort) parts.push(`Ich komme aus ${state.ort}.`);
     if (state.goals.size) parts.push(`Mir geht's gerade vor allem um: ${[...state.goals].join(", ")}.`);
     parts.push(`Am liebsten würde ich ${MODE_PHRASE[state.mode]}.`);
@@ -105,7 +105,7 @@ export function applyConfig() {
         break;
       case "waPlain": {
         const isPlaceholder = /X/.test(CONFIG.whatsappNumber);
-        el.href = waLink("Hey Emil! 👋");
+        el.href = waLink("Hey Ruben! 👋");
         el.textContent = isPlaceholder ? "WhatsApp: [Nummer folgt]" : `WhatsApp: +${CONFIG.whatsappNumber}`;
         break;
       }
