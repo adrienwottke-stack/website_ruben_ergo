@@ -15,6 +15,7 @@
   <meta property="og:locale" content="de_DE" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script>try{document.documentElement.setAttribute("data-style",localStorage.getItem("ruben-style")||"klassik")}catch(e){document.documentElement.setAttribute("data-style","klassik")}</script>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
@@ -65,6 +66,7 @@
       <div class="hero__media" data-scrub-video>
         <video class="scrub-video" muted playsinline preload="metadata"
                poster="/assets/video/hero-poster.jpg"
+               data-src="/assets/video/hero-loop.mp4"
                width="1920" height="1080" aria-hidden="true" tabindex="-1"></video>
         <img class="scrub-poster" src="/assets/video/hero-poster.jpg" alt="" width="1920" height="1080" aria-hidden="true" />
         <div class="hero__veil" aria-hidden="true"></div>
@@ -159,6 +161,7 @@
       <div class="team__stage" data-scrub-video data-reveal="scale">
         <video class="scrub-video" muted playsinline preload="metadata"
                poster="/assets/video/team-poster.jpg"
+               data-src="/assets/video/team-loop.mp4"
                width="1920" height="1080" aria-hidden="true" tabindex="-1"></video>
         <img class="scrub-poster" src="/assets/video/team-poster.jpg" alt="" width="1920" height="1080" aria-hidden="true" />
         <span class="team__stage-cap">[Platzhalter - echtes Team-Footage folgt]</span>
@@ -201,6 +204,93 @@
           einer Gehaltstabelle.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6b · STIL-SEKTIONEN (je Design-Richtung eine) ===================== -->
+  <section class="section stilfeature" id="erklaert" data-style-only="klassik" aria-labelledby="sv-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Lieber hören statt lesen?</p>
+        <h2 id="sv-title">Zwei Minuten. Ruben <em>erklärt's</em> dir selbst.</h2>
+        <p class="lead">Was das hier ist, was es nicht ist - und woran du merkst, ob es
+        zu dir passt. Ohne Schnitt, ohne Skript, ohne Studio.</p>
+      </div>
+      <div class="stilfeature__stage">
+        <img src="/assets/video/finale-poster.jpg" alt="" width="1920" height="1080" loading="lazy" />
+        <span class="stilfeature__play" aria-hidden="true"></span>
+        <span class="stilfeature__cap">[Platzhalter - echtes 2-Minuten-Video folgt]</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section stilfeature" id="klartext" data-style-only="wallstreet" aria-labelledby="kt-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Bevor du fragst</p>
+        <h2 id="kt-title">Drei Fragen, die sich hier <em>jeder</em> stellt.</h2>
+      </div>
+      <div class="bekommst__cards">
+        <article class="pillar">
+          <h3>„Ist das seriös?“</h3>
+          <p>Berechtigte Frage. Deshalb stehen Impressum, Erstinformation und die
+          zuständige Aufsicht unten verlinkt - und im Kennenlernen beantwortet Ruben
+          jede Frage. Auch die unbequemen. Gerade die.</p>
+        </article>
+        <article class="pillar">
+          <h3>„Muss ich verkaufen können?“</h3>
+          <p>Nein. Du musst zuhören können und lernen wollen. Der Rest ist Handwerk -
+          und genau das wird dir gezeigt, Gespräch für Gespräch, so lange bis es sitzt.</p>
+        </article>
+        <article class="pillar">
+          <h3>„Was verdiene ich?“</h3>
+          <p>Hier steht absichtlich keine Zahl. Jede ehrliche Antwort beginnt bei deiner
+          Situation - und die klären wir im ersten Gespräch. Mit echten Rechnungen
+          statt Versprechen.</p>
+        </article>
+      </div>
+      <div class="these__cta stilfeature__cta">
+        <a href="#termin" class="btn btn--gold btn--lg">Frag Ruben direkt</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section stilfeature" id="haushalt" data-style-only="klar" aria-labelledby="hh-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Kleines Werkzeug, ehrlicher Blick</p>
+        <h2 id="hh-title">Dein Monat in <em>drei</em> Zahlen.</h2>
+        <p class="lead">Trag ein, was reinkommt und was rausgeht - du siehst sofort,
+        was übrig bleibt. Alles bleibt hier im Browser, nichts wird gespeichert.</p>
+      </div>
+      <form class="haushalt" id="haushaltForm">
+        <div class="haushalt__fields">
+          <label class="haushalt__field"><span>Netto im Monat (€)</span>
+            <input type="number" id="hhIncome" inputmode="numeric" min="0" step="50" value="2200" />
+          </label>
+          <label class="haushalt__field"><span>Wohnen: Miete, Nebenkosten (€)</span>
+            <input type="number" id="hhWohnen" inputmode="numeric" min="0" step="25" value="800" />
+          </label>
+          <label class="haushalt__field"><span>Fixkosten: Versicherungen, Abos, Handy (€)</span>
+            <input type="number" id="hhFix" inputmode="numeric" min="0" step="25" value="250" />
+          </label>
+          <label class="haushalt__field"><span>Leben: Essen, Freizeit, Rest (€)</span>
+            <input type="number" id="hhLeben" inputmode="numeric" min="0" step="25" value="700" />
+          </label>
+        </div>
+        <div class="haushalt__result" aria-live="polite">
+          <div><span class="haushalt__num tnum" id="hhFree">450 €</span><span>bleiben übrig</span></div>
+          <div><span class="haushalt__num tnum" id="hhQuote">20 %</span><span>mögliche Sparquote</span></div>
+          <div><span class="haushalt__num tnum" id="hhYear">5.400 €</span><span>im Jahr</span></div>
+        </div>
+        <p class="haushalt__hint" id="hhHint"></p>
+        <div class="these__cta stilfeature__cta">
+          <a href="#termin" class="btn btn--gold btn--lg">Ergebnis mit Ruben besprechen</a>
+          <a class="textlink" href="/rechner.html">Was daraus werden kann → Zinsrechner
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -314,6 +404,7 @@
       <div class="finale__media" data-scrub-video>
         <video class="scrub-video" muted playsinline preload="metadata"
                poster="/assets/video/finale-poster.jpg"
+               data-src="/assets/video/finale-loop.mp4"
                width="1920" height="1080" aria-hidden="true" tabindex="-1"></video>
         <img class="scrub-poster" src="/assets/video/finale-poster.jpg" alt="" width="1920" height="1080" aria-hidden="true" />
         <div class="finale__veil" aria-hidden="true"></div>
