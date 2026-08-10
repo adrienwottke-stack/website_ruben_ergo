@@ -22,14 +22,14 @@ const IMAGES = {
     founderAlt: "Ruben im Anzug, lachend am Mikrofon - Augenzwinkern Richtung Wall Street",
   },
   wallstreet: {
-    hero: V + "/ws-hero.jpg",
+    hero: "/assets/video/hero-poster.jpg",
     founder: V + "/ws-founder.jpg",
     team: V + "/ws-team.jpg",
     ambient: V + "/ws-ambient.jpg",
     founderAlt: "Ruben lachend am Schreibtisch, Abendlicht und Messinglampe",
   },
   klar: {
-    hero: V + "/kl-hero.jpg",
+    hero: "/assets/video/hero-poster.jpg",
     founder: V + "/kl-founder.jpg",
     team: V + "/kl-team.jpg",
     ambient: V + "/kl-ambient.jpg",
@@ -58,9 +58,10 @@ function apply(styleId) {
   const portrait = document.querySelector(".portrait img");
   if (portrait && map.founderAlt) portrait.setAttribute("alt", map.founderAlt);
 
-  // Videos gehören zur Klassik-Bildwelt — in anderen Stilen pausieren (CSS blendet sie aus)
+  // Team-/Finale-Loops gehören zur Klassik-Bildwelt — in anderen Stilen pausieren
+  // (CSS blendet sie aus). Der Hero-Orbit läuft in allen Stilen weiter.
   document.querySelectorAll("video.scrub-video").forEach((v) => {
-    if (styleId !== "klassik") v.pause();
+    if (styleId !== "klassik" && !v.closest("#hero")) v.pause();
   });
 
   document.querySelectorAll(".styleswitch__btn").forEach((b) => {

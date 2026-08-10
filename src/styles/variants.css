@@ -60,8 +60,10 @@
   --shadow-gold: 0 10px 32px -10px rgba(14, 154, 108, 0.35);
 }
 
-/* Die Video-Loops gehören zur Klassik-Bildwelt — andere Stile zeigen ihre Poster */
-:root:not([data-style="klassik"]) .scrub-video { visibility: hidden; }
+/* Team- und Finale-Loops gehören zur Klassik-Bildwelt — andere Stile zeigen ihre Poster.
+   Der Hero (Orbit um Ruben) läuft in allen drei Stilen. */
+:root:not([data-style="klassik"]) .team__stage .scrub-video,
+:root:not([data-style="klassik"]) .finale__media .scrub-video { visibility: hidden; }
 
 /* --- Der Umschalter oben rechts --- */
 .styleswitch {
