@@ -1,12 +1,12 @@
 /* =========================================================================
-   RUBEN · Stil-Varianten — drei Design-Richtungen zum Anklicken
-   klassik    = Tokens aus tokens.css (Beige · Navy · Gold, Serif)
-   wallstreet = Nacht, Schwarzblau, Champagner-Gold
-   klar       = Hell, minimal, frisches Grün, Sans-Display
-   Der Umschalter sitzt oben rechts in der Nav (style-switcher.js).
+   RUBEN · Wall-Street-Look — der eine Stil der Seite
+   Nacht, Schwarzblau, Champagner-Gold. Überschreibt die Basis-Tokens
+   aus tokens.css (wird als letztes Stylesheet geladen).
+   Die früheren Stil-Varianten (Klassik/Klar + Umschalter) liegen im
+   Branch archiv/stil-varianten.
    ========================================================================= */
 
-:root[data-style="wallstreet"] {
+:root {
   --beige-0: #1B2029;
   --beige-1: #12161E;
   --beige-2: #242B38;
@@ -34,94 +34,15 @@
   --shadow-gold: 0 10px 32px -10px rgba(201, 162, 84, 0.5);
 }
 
-:root[data-style="klar"] {
-  --beige-0: #FFFFFF;
-  --beige-1: #FAFAF7;
-  --beige-2: #ECEFEA;
+/* Team- und Finale-Loop sind noch im alten Look — bis die neuen 90s-Clips
+   generiert sind, zeigen beide Bühnen ihr Poster. Der Hero-Clip läuft. */
+.team__stage .scrub-video,
+.finale__media .scrub-video { visibility: hidden; }
 
-  --navy-900: #0A211C;
-  --navy-800: #0F2E26;
-  --navy-700: #1C453A;
-
-  --gold-600: #0E9A6C;
-  --gold-500: #16B57F;
-  --gold-300: #8FE0C2;
-
-  --ink: #17201D;
-  --ink-muted: #5E6B66;
-  --on-dark: #F2F7F4;
-  --on-dark-muted: rgba(242, 247, 244, 0.62);
-
-  --line: rgba(23, 32, 29, 0.10);
-  --line-on-dark: rgba(242, 247, 244, 0.14);
-  --ring: rgba(22, 181, 127, 0.5);
-
-  --font-display: "Archivo Variable", "Arial Narrow", sans-serif;
-  --shadow-gold: 0 10px 32px -10px rgba(14, 154, 108, 0.35);
-}
-
-/* Team- und Finale-Loops gehören zur Klassik-Bildwelt — andere Stile zeigen ihre Poster.
-   Der Hero (Orbit um Ruben) läuft in allen drei Stilen. */
-:root:not([data-style="klassik"]) .team__stage .scrub-video,
-:root:not([data-style="klassik"]) .finale__media .scrub-video { visibility: hidden; }
-
-/* --- Der Umschalter oben rechts --- */
-.styleswitch {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--beige-0);
-  box-shadow: var(--shadow-sm);
-}
-.styleswitch__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink-muted);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-.styleswitch__btn i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex: none;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
-}
-.styleswitch__btn:hover { color: var(--ink); }
-.styleswitch__btn.is-active { background: var(--navy-800); color: var(--on-dark); }
-.styleswitch__btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-
-@media (max-width: 1023px) {
-  .styleswitch__btn span { display: none; }
-  .styleswitch__btn { padding: 9px; }
-}
-@media (max-width: 480px) {
-  .styleswitch { padding: 2px; gap: 0; }
-  .styleswitch__btn { padding: 7px; }
-}
-
-/* --- Stil-eigene Sektionen: pro Design-Richtung eine spitze Konversions-Sektion --- */
-[data-style-only] { display: none; }
-:root[data-style="klassik"] [data-style-only="klassik"],
-:root[data-style="wallstreet"] [data-style-only="wallstreet"],
-:root[data-style="klar"] [data-style-only="klar"] { display: block; }
-
+/* --- Klartext- und Video-Sektion --- */
 .stilfeature__cta { margin-top: var(--sp-4); }
 
-/* Klassik: Video-Bühne ("Ruben erklärt's") */
+/* Video-Bühne ("Ruben erklärt's") */
 .stilfeature__stage {
   position: relative;
   margin-top: var(--sp-4);
@@ -149,39 +70,4 @@
   background: rgba(16, 27, 40, 0.55);
   color: var(--on-dark-muted);
   font-size: 0.72rem; letter-spacing: 0.02em;
-}
-
-/* Klar: Haushaltsrechner */
-.haushalt { margin-top: var(--sp-4); display: grid; gap: var(--sp-3); }
-.haushalt__fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
-.haushalt__field {
-  display: grid; gap: 8px; align-content: start;
-  padding: var(--sp-2);
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--beige-0); box-shadow: var(--shadow-sm);
-  font-size: var(--step--1); color: var(--ink-muted);
-}
-.haushalt__field input {
-  width: 100%; border: 0; background: transparent;
-  color: var(--ink); font-family: var(--font-body);
-  font-size: var(--step-1); font-weight: 600;
-}
-.haushalt__field input:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
-.haushalt__result {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2);
-  text-align: center; padding: var(--sp-3);
-  border-radius: var(--radius); background: var(--navy-800);
-  color: var(--on-dark); box-shadow: var(--shadow-md);
-}
-.haushalt__result > div { display: grid; gap: 4px; }
-.haushalt__num { font-family: var(--font-display); font-size: var(--step-2); color: var(--gold-500); }
-.haushalt.is-negative #hhFree { color: #E4715C; }
-.haushalt__result > div > span:last-child { font-size: 0.75rem; color: var(--on-dark-muted); letter-spacing: 0.04em; }
-.haushalt__hint { color: var(--ink-muted); font-size: var(--step-0); max-width: 62ch; }
-@media (max-width: 860px) {
-  .haushalt__fields { grid-template-columns: 1fr 1fr; }
-  .haushalt__result { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-  .haushalt__fields { grid-template-columns: 1fr; }
 }

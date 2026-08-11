@@ -15,7 +15,6 @@
   <meta property="og:locale" content="de_DE" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <script>try{document.documentElement.setAttribute("data-style",localStorage.getItem("ruben-style")||"klassik")}catch(e){document.documentElement.setAttribute("data-style","klassik")}</script>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
@@ -208,23 +207,8 @@
   </section>
 
   <!-- ===================== 6b · STIL-SEKTIONEN (je Design-Richtung eine) ===================== -->
-  <section class="section stilfeature" id="erklaert" data-style-only="klassik" aria-labelledby="sv-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Lieber hören statt lesen?</p>
-        <h2 id="sv-title">Zwei Minuten. Ruben <em>erklärt's</em> dir selbst.</h2>
-        <p class="lead">Was das hier ist, was es nicht ist - und woran du merkst, ob es
-        zu dir passt. Ohne Schnitt, ohne Skript, ohne Studio.</p>
-      </div>
-      <div class="stilfeature__stage">
-        <img src="/assets/video/finale-poster.jpg" alt="" width="1920" height="1080" loading="lazy" />
-        <span class="stilfeature__play" aria-hidden="true"></span>
-        <span class="stilfeature__cap">[Platzhalter - echtes 2-Minuten-Video folgt]</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section stilfeature" id="klartext" data-style-only="wallstreet" aria-labelledby="kt-title">
+  <!-- ===================== 6b · KLARTEXT (Einwände, bevor du fragst) ===================== -->
+  <section class="section stilfeature" id="klartext" aria-labelledby="kt-title">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Bevor du fragst</p>
@@ -255,42 +239,20 @@
     </div>
   </section>
 
-  <section class="section stilfeature" id="haushalt" data-style-only="klar" aria-labelledby="hh-title">
+  <!-- ===================== 6c · VIDEO-BÜHNE (Ruben erklärt's) ===================== -->
+  <section class="section stilfeature" id="erklaert" aria-labelledby="sv-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Kleines Werkzeug, ehrlicher Blick</p>
-        <h2 id="hh-title">Dein Monat in <em>drei</em> Zahlen.</h2>
-        <p class="lead">Trag ein, was reinkommt und was rausgeht - du siehst sofort,
-        was übrig bleibt. Alles bleibt hier im Browser, nichts wird gespeichert.</p>
+        <p class="eyebrow">Lieber hören statt lesen?</p>
+        <h2 id="sv-title">Zwei Minuten. Ruben <em>erklärt's</em> dir selbst.</h2>
+        <p class="lead">Was das hier ist, was es nicht ist - und woran du merkst, ob es
+        zu dir passt. Ohne Schnitt, ohne Skript, ohne Studio.</p>
       </div>
-      <form class="haushalt" id="haushaltForm">
-        <div class="haushalt__fields">
-          <label class="haushalt__field"><span>Netto im Monat (€)</span>
-            <input type="number" id="hhIncome" inputmode="numeric" min="0" step="50" value="2200" />
-          </label>
-          <label class="haushalt__field"><span>Wohnen: Miete, Nebenkosten (€)</span>
-            <input type="number" id="hhWohnen" inputmode="numeric" min="0" step="25" value="800" />
-          </label>
-          <label class="haushalt__field"><span>Fixkosten: Versicherungen, Abos, Handy (€)</span>
-            <input type="number" id="hhFix" inputmode="numeric" min="0" step="25" value="250" />
-          </label>
-          <label class="haushalt__field"><span>Leben: Essen, Freizeit, Rest (€)</span>
-            <input type="number" id="hhLeben" inputmode="numeric" min="0" step="25" value="700" />
-          </label>
-        </div>
-        <div class="haushalt__result" aria-live="polite">
-          <div><span class="haushalt__num tnum" id="hhFree">450 €</span><span>bleiben übrig</span></div>
-          <div><span class="haushalt__num tnum" id="hhQuote">20 %</span><span>mögliche Sparquote</span></div>
-          <div><span class="haushalt__num tnum" id="hhYear">5.400 €</span><span>im Jahr</span></div>
-        </div>
-        <p class="haushalt__hint" id="hhHint"></p>
-        <div class="these__cta stilfeature__cta">
-          <a href="#termin" class="btn btn--gold btn--lg">Ergebnis mit Ruben besprechen</a>
-          <a class="textlink" href="/rechner.html">Was daraus werden kann → Zinsrechner
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </form>
+      <div class="stilfeature__stage">
+        <img src="/assets/img/video-still.jpg" alt="Ruben am Schreibtisch vor dem Panoramafenster" width="1920" height="1080" loading="lazy" />
+        <span class="stilfeature__play" aria-hidden="true"></span>
+        <span class="stilfeature__cap">[Platzhalter - echtes 2-Minuten-Video folgt]</span>
+      </div>
     </div>
   </section>
 
@@ -333,30 +295,6 @@
     </div>
   </section>
 
-  <!-- ===================== 9 · STIMMEN ===================== -->
-  <section class="section section--paper stimmen" id="stimmen" aria-labelledby="stimmen-title">
-    <div class="container">
-      <div class="section-head center" data-reveal>
-        <p class="eyebrow eyebrow--center">Echte Stimmen, sonst keine</p>
-        <h2 id="stimmen-title">Hier steht nur, was uns jemand <em>wirklich</em> gesagt hat.</h2>
-        <p class="lead">Keine gekauften Bewertungen, keine ausgedachten Namen. Jede Stimme
-        hier hat ihr Okay gegeben, bevor sie online ging. Deshalb ist diese Sektion noch
-        kurz - und genau deshalb kannst du ihr glauben.</p>
-      </div>
-      <div class="stimmen__grid">
-        <figure class="stimme" data-reveal style="--reveal-delay:0ms">
-          <blockquote>[Zitat folgt - hier stehen nur echte, freigegebene Stimmen]</blockquote>
-          <figcaption><b>[Name folgt]</b><span>[Kontext folgt]</span></figcaption>
-        </figure>
-        <figure class="stimme" data-reveal style="--reveal-delay:80ms">
-          <blockquote>[Zitat folgt - hier stehen nur echte, freigegebene Stimmen]</blockquote>
-          <figcaption><b>[Name folgt]</b><span>[Kontext folgt]</span></figcaption>
-        </figure>
-      </div>
-      <p class="stimmen__abbinder" data-reveal>Der freie Platz hier unten ist keine Design-Entscheidung.</p>
-    </div>
-  </section>
-
   <!-- ===================== 10 · ABLAUF ===================== -->
   <section class="section ablauf" id="ablauf" aria-labelledby="ablauf-title">
     <div class="container">
@@ -394,6 +332,30 @@
       </ol>
       <p class="ablauf__abbinder" data-reveal>Zwischen Schritt eins und Schritt zwei
       liegen meistens nur ein paar Tage.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 10b · STIMMEN ===================== -->
+  <section class="section section--paper stimmen" id="stimmen" aria-labelledby="stimmen-title">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="eyebrow eyebrow--center">Echte Stimmen, sonst keine</p>
+        <h2 id="stimmen-title">Hier steht nur, was uns jemand <em>wirklich</em> gesagt hat.</h2>
+        <p class="lead">Keine gekauften Bewertungen, keine ausgedachten Namen. Jede Stimme
+        hier hat ihr Okay gegeben, bevor sie online ging. Deshalb ist diese Sektion noch
+        kurz - und genau deshalb kannst du ihr glauben.</p>
+      </div>
+      <div class="stimmen__grid">
+        <figure class="stimme" data-reveal style="--reveal-delay:0ms">
+          <blockquote>[Zitat folgt - hier stehen nur echte, freigegebene Stimmen]</blockquote>
+          <figcaption><b>[Name folgt]</b><span>[Kontext folgt]</span></figcaption>
+        </figure>
+        <figure class="stimme" data-reveal style="--reveal-delay:80ms">
+          <blockquote>[Zitat folgt - hier stehen nur echte, freigegebene Stimmen]</blockquote>
+          <figcaption><b>[Name folgt]</b><span>[Kontext folgt]</span></figcaption>
+        </figure>
+      </div>
+      <p class="stimmen__abbinder" data-reveal>Der freie Platz hier unten ist keine Design-Entscheidung.</p>
     </div>
   </section>
 

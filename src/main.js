@@ -18,13 +18,9 @@ import { initVideoLoop, initHero } from "./js/scrub.js";
 import { initCalculator } from "./js/calculator.js";
 import { initMap } from "./js/map.js";
 import { initWhatsApp, applyConfig } from "./js/whatsapp.js";
-import { initStyleSwitcher } from "./js/style-switcher.js";
-import { initHaushalt } from "./js/haushalt.js";
 
 initScroll();
 initNav();
-initStyleSwitcher();
-initHaushalt();
 initHero();
 initCalculator();
 initMap();
