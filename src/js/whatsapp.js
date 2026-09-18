@@ -1,6 +1,6 @@
 /* =========================================================================
-   RUBEN · WhatsApp-First-Buchung
-   Baut den wa.me-Link mit vorbefüllter Nachricht aus dem Mini-Interview.
+   RUBEN · Persönlicher Kontakt
+   Baut den wa.me-Link aus dem optionalen Ort und der persönlichen Nachricht.
    Der Nutzer sieht die Nachricht in WhatsApp und entscheidet selbst
    über das Absenden — hier wird nichts übertragen oder gespeichert.
    ========================================================================= */
@@ -14,25 +14,18 @@ export function initWhatsApp() {
   if (!form) return;
 
   const ortChips = form.querySelectorAll("[data-ort]");
-  const goalChips = form.querySelectorAll("[data-goal]");
-  const modeChips = form.querySelectorAll("[data-mode]");
+  const messageInput = form.querySelector("#visionMessage");
   const waButton = document.getElementById("waButton");
-
-  const state = { ort: "", goals: new Set(), mode: "persönlich" };
-
-  const MODE_PHRASE = {
-    "persönlich": "persönlich sprechen",
-    Videocall: "per Videocall sprechen",
-    schreiben: "erst mal hier schreiben",
-  };
+  if (!waButton || !messageInput) return;
+  let selectedPlace = "";
 
   const buildMessage = () => {
     const parts = ["Hey Ruben!"];
-    if (state.ort === "Woanders") parts.push("Ich komme nicht direkt aus Leipzig.");
-    else if (state.ort) parts.push(`Ich komme aus ${state.ort}.`);
-    if (state.goals.size) parts.push(`Mir geht's gerade vor allem um: ${[...state.goals].join(", ")}.`);
-    parts.push(`Am liebsten würde ich ${MODE_PHRASE[state.mode]}.`);
-    return parts.join(" ");
+    if (selectedPlace === "Woanders") parts.push("Ich komme nicht direkt aus Leipzig.");
+    else if (selectedPlace) parts.push(`Ich komme aus ${selectedPlace}.`);
+    const message = messageInput.value.trim();
+    parts.push(message || "Ich würde mich gerne mit dir austauschen.");
+    return parts.join("\n\n");
   };
 
   const refresh = () => {
@@ -48,7 +41,7 @@ export function initWhatsApp() {
         c.classList.remove("is-active");
         c.setAttribute("aria-pressed", "false");
       });
-      state.ort = wasActive ? "" : ort;
+      selectedPlace = wasActive ? "" : ort;
       if (!wasActive) {
         chip.classList.add("is-active");
         chip.setAttribute("aria-pressed", "true");
@@ -57,34 +50,8 @@ export function initWhatsApp() {
     });
   });
 
-  // Frage 2: Ziele — Mehrfachauswahl
-  goalChips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const goal = chip.dataset.goal;
-      if (state.goals.has(goal)) {
-        state.goals.delete(goal);
-        chip.classList.remove("is-active");
-      } else {
-        state.goals.add(goal);
-        chip.classList.add("is-active");
-      }
-      refresh();
-    });
-  });
-
-  // Frage 3: Gesprächsform — Einfachauswahl mit Default
-  modeChips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      modeChips.forEach((c) => {
-        c.classList.remove("is-active");
-        c.setAttribute("aria-pressed", "false");
-      });
-      chip.classList.add("is-active");
-      chip.setAttribute("aria-pressed", "true");
-      state.mode = chip.dataset.mode;
-      refresh();
-    });
-  });
+  messageInput.addEventListener("input", refresh);
+  form.addEventListener("submit", (event) => event.preventDefault());
 
   refresh();
 }

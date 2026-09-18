@@ -4,6 +4,10 @@ dist/
 
 # Claude Code local tooling / skills — not part of the website
 .claude/
+.agents/
+
+# Unbearbeitete Fotoquellen — die optimierten WebP-Dateien liegen in public/media
+pictures/
 
 # Large source assets not needed in the repo (optimized versions are committed)
 assets/Hero.png

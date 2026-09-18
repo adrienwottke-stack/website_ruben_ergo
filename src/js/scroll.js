@@ -14,6 +14,20 @@ export { gsap, ScrollTrigger };
 
 export let lenis = null;
 
+export function scrollToAnchor(target, { immediate = false } = {}) {
+  if (document.body.classList.contains("alaba-home")) {
+    const headerHeight = document.getElementById("nav")?.offsetHeight || 0;
+    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight - 12);
+    // A numeric target avoids counting CSS scroll-padding a second time in Lenis.
+    if (lenis) lenis.scrollTo(top, { immediate });
+    else window.scrollTo({ top, behavior: immediate || prefersReduced ? "instant" : "smooth" });
+  } else if (lenis) {
+    lenis.scrollTo(target, { offset: 0 });
+  } else {
+    target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+  }
+}
+
 /* Mobile Browser feuern beim Scrollen laufend „resize", weil die URL-Leiste
    ein- und ausfährt. Jeder Refresh würde die gepinnte Hero-Sektion neu
    vermessen und die Scrollposition verschieben — genau das Springen.
@@ -49,6 +63,7 @@ export function initScroll() {
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
       lenis.on("scroll", ScrollTrigger.update);
+      if (document.documentElement.matches(".intro-lock, .nav-lock")) lenis.stop();
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
     });
@@ -57,13 +72,14 @@ export function initScroll() {
   // Anker sanft anfahren (Lenis übernimmt, sonst nativ)
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
+      // The home menu closes and restores focus before it handles its anchors.
+      if (a.closest(".alaba-home #navMenu")) return;
       const id = a.getAttribute("href");
       if (!id || id === "#") return;
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(target, { offset: 0 });
-      else target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+      scrollToAnchor(target);
     });
   });
 

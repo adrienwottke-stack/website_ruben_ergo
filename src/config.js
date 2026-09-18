@@ -26,3 +26,13 @@ export const CONFIG = {
     { name: "Bald du?", sub: "dein Standort", lon: 12.1405, lat: 54.0924, soon: true, above: true },
   ],
 };
+
+/* Zentraler Media-Slot für den neuen Hero.
+   Das finale Video später einfach unter public/media/hero.mp4 ersetzen.
+   Dateiname und Code bleiben dabei unverändert. */
+export const MEDIA = {
+  hero: {
+    video: "/media/hero.mp4",
+    poster: "/media/hero-poster.jpg",
+  },
+};

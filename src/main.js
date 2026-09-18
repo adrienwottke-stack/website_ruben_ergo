@@ -11,6 +11,8 @@ import "./styles/base.css";
 import "./styles/components.css";
 import "./styles/sections.css";
 import "./styles/variants.css";
+import "./styles/alaba.css";
+import "./styles/rechner.css";
 
 import { initScroll } from "./js/scroll.js";
 import { initNav } from "./js/nav.js";
@@ -18,20 +20,28 @@ import { initVideoLoop, initHero } from "./js/scrub.js";
 import { initCalculator } from "./js/calculator.js";
 import { initMap } from "./js/map.js";
 import { initWhatsApp, applyConfig } from "./js/whatsapp.js";
+import { initAlabaHome } from "./js/alaba-home.js";
 
 initScroll();
-initNav();
-initHero();
-initCalculator();
-initMap();
-initWhatsApp();
-applyConfig();
 
-/* Team- und Finale-Video laufen als leiser Loop, sobald sie sichtbar sind —
-   scroll-gekoppelt froren sie beim Stehenbleiben mitten im Clip ein */
-document.querySelectorAll(".team__stage[data-scrub-video], .finale__media[data-scrub-video]")
-  .forEach((el) => initVideoLoop(el));
+if (document.body.classList.contains("alaba-home")) {
+  initAlabaHome();
+  initWhatsApp();
+  applyConfig();
+} else {
+  initNav();
+  initHero();
+  initCalculator();
+  initMap();
+  initWhatsApp();
+  applyConfig();
 
-/* Footer-Jahr */
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+  /* Team- und Finale-Video laufen als leiser Loop, sobald sie sichtbar sind —
+     scroll-gekoppelt froren sie beim Stehenbleiben mitten im Clip ein */
+  document.querySelectorAll(".team__stage[data-scrub-video], .finale__media[data-scrub-video]")
+    .forEach((el) => initVideoLoop(el));
+
+  /* Footer-Jahr */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
