@@ -27,12 +27,18 @@ export const CONFIG = {
   ],
 };
 
-/* Zentraler Media-Slot für den neuen Hero.
-   Das finale Video später einfach unter public/media/hero.mp4 ersetzen.
-   Dateiname und Code bleiben dabei unverändert. */
+/* Bestehender Hero-Slot: echtes Ruben-/Team-Material später als Drop-in einsetzen.
+   Desktop: hero.mp4 + passender hero-poster.jpg; gleicher Container und Ausschnitt.
+   Optional separate Mobilfassung samt Poster eintragen (bis einschließlich 900px,
+   entsprechend der vorhandenen Maske). null verwendet die Desktop-Dateien.
+   Bei Austausch unter gleichen Namen einen Versionsparameter an beiden Pfaden
+   und am Poster-Preload in index.html ergänzen, damit keine alten Medien bleiben.
+   Schnitt: natürlicher, sauberer Loop; Gesichter innerhalb der vorhandenen Masken. */
 export const MEDIA = {
   hero: {
     video: "/media/hero.mp4",
     poster: "/media/hero-poster.jpg",
+    mobileVideo: null,
+    mobilePoster: null,
   },
 };

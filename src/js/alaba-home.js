@@ -1,33 +1,70 @@
 import { MEDIA } from "../config.js";
 import { gsap, ScrollTrigger, prefersReduced, lenis, scrollToAnchor } from "./scroll.js";
 
+// Match the existing hero mask breakpoint without changing its geometry.
+const heroMobile = window.matchMedia("(max-width: 900px)");
+const heroMedia = () => ({
+  video: (heroMobile.matches && MEDIA.hero.mobileVideo) || MEDIA.hero.video,
+  poster: (heroMobile.matches && MEDIA.hero.mobilePoster) || MEDIA.hero.poster,
+});
+
 function applyHeroMedia() {
   const videos = Array.from(document.querySelectorAll("[data-hero-video]"));
+  const posterOnly = new WeakSet();
+
+  const showPoster = (video) => {
+    if (posterOnly.has(video)) return;
+    posterOnly.add(video);
+    video.autoplay = false;
+    video.pause();
+    // Reset failed/denied playback to the native poster on the same video layer.
+    video.removeAttribute("src");
+    video.load();
+  };
+
+  const play = (video) => {
+    if (prefersReduced || posterOnly.has(video)) return;
+    video.play()?.catch((error) => {
+      // Scrolling off screen may abort a pending play; that is not a media error.
+      if (error.name !== "AbortError") showPoster(video);
+    });
+  };
 
   videos.forEach((video) => {
-    video.poster = MEDIA.hero.poster;
-    if (video.getAttribute("src") !== MEDIA.hero.video) {
-      video.src = MEDIA.hero.video;
-      video.load();
-    }
-
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    if (prefersReduced) {
-      video.autoplay = false;
-      video.pause();
-    } else {
-      video.play()?.catch(() => {});
-    }
+    video.addEventListener("error", () => showPoster(video));
   });
+
+  const syncMedia = () => {
+    const media = heroMedia();
+    videos.forEach((video) => {
+      posterOnly.delete(video);
+      video.poster = media.poster;
+      // Also cover decode/loading gaps; background follows the existing crop.
+      video.style.backgroundImage = `url(${JSON.stringify(media.poster)})`;
+      video.autoplay = !prefersReduced;
+      if (prefersReduced) {
+        showPoster(video);
+      } else {
+        if (video.getAttribute("src") !== media.video) {
+          video.src = media.video;
+          video.load();
+        }
+        play(video);
+      }
+    });
+  };
+  syncMedia();
+  heroMobile.addEventListener("change", syncMedia);
 
   // Stop decoding the two hero layers once the stage is off screen.
   const stage = document.querySelector(".life__stage");
   if (stage && !prefersReduced && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(([entry]) => {
       videos.forEach((video) => {
-        if (entry.isIntersecting) video.play()?.catch(() => {});
+        if (entry.isIntersecting) play(video);
         else video.pause();
       });
     });
@@ -97,7 +134,7 @@ function initIntro() {
   // Critical stills and fonts gate the reveal, never the entire video download.
   // A bounded fallback and Escape keep failed/slow media from blocking the page.
   const poster = new Image();
-  poster.src = MEDIA.hero.poster;
+  poster.src = heroMedia().poster;
   const ready = Promise.allSettled([
     ...images.map((image) => image.decode()),
     poster.decode(),
@@ -230,7 +267,7 @@ function initLifeScene() {
       ease: "power2.out",
     }, 0.73)
     .to(scrollHint, {
-      color: "#ffffff",
+      color: "#ece9e2",
       duration: 0.12,
       ease: "none",
     }, 0.58);
