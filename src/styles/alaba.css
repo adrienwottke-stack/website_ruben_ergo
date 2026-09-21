@@ -171,8 +171,8 @@ body.alaba-home {
 .craft-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1200ms cubic-bezier(.22, 1, .36, 1); }
 .motion-ready .craft-shot:not(.is-in) .craft-shot__frame::after { transform: scaleY(1); }
 .motion-ready .craft-shot:not(.is-in) img { transform: scale(1.08); }
-.craft-shot--cafe { grid-column: 1 / 7; grid-row: 1; aspect-ratio: 4 / 3; }
-.craft-shot--cafe img { object-position: 50% 65%; }
+.craft-shot--arrival { grid-column: 1 / 7; grid-row: 1; aspect-ratio: 4 / 5; }
+.craft-shot--arrival img { object-position: 65% 55%; }
 .craft-shot--friends { grid-column: 10 / -1; grid-row: 1; margin-top: 7vw; aspect-ratio: 2 / 3; }
 .craft-shot--friends img { object-position: 50% 66%; }
 .craft__aside { grid-column: 7 / 10; grid-row: 1; align-self: center; margin: 0; font-family: "Archivo Variable", Arial, sans-serif; font-size: clamp(15px, 1.3vw, 20px); font-weight: 420; line-height: 1.45; letter-spacing: -.025em; }
@@ -181,9 +181,10 @@ body.alaba-home {
 .craft__balance-title .mega-line { font-size: clamp(78px, 12.7vw, 200px); }
 .craft-shot--life { grid-column: 1 / 6; grid-row: 2; aspect-ratio: 4 / 5; }
 .craft-shot--life img { object-position: 50% 69%; }
-.craft-shot--coffee { grid-column: 10 / 12; grid-row: 2; margin-top: 24px; aspect-ratio: 1; }
-.craft-shot--table { grid-column: 8 / -1; grid-row: 2; align-self: end; aspect-ratio: 4 / 3; }
-.craft-shot--table img { object-position: 50% 70%; }
+.craft-shot--taillight { grid-column: 8 / 12; grid-row: 2; margin-top: 24px; aspect-ratio: 4 / 5; }
+.craft-shot--taillight img { object-position: 50% 70%; }
+.craft-shot--tailoring { grid-column: 7 / -1; grid-row: 3; margin-top: -8vw; aspect-ratio: 4 / 5; }
+.craft-shot--tailoring img { object-position: 60% 55%; }
 
 /* ---------- PROTECTED PORTRAIT / CALCULATOR ---------- */
 .portrait-story {
@@ -269,8 +270,14 @@ body.alaba-home {
 .lens__item:nth-child(2) { grid-column: 6 / 8; margin-top: 100px; }
 .lens__item:nth-child(3) { grid-column: 10 / -1; margin-top: 32px; }
 .lens__item:nth-child(4) { grid-column: 2 / 5; margin-top: 40px; }
-.lens__item:nth-child(5) { grid-column: 6 / 10; }
-.lens__item:nth-child(6) { grid-column: 11 / -1; margin-top: 100px; }
+.lens__item:nth-child(5) { grid-column: 7 / 11; }
+.lens__item:nth-child(6) { grid-column: 1 / 7; aspect-ratio: 4 / 3; }
+.lens__item:nth-child(7) { grid-column: 9 / 12; margin-top: 64px; }
+.lens__item--coffee img { object-position: 50% 65%; }
+.lens__item--bar img { object-position: 50% 72%; }
+.lens__item--marina img { object-position: 50% 75%; }
+.lens__item--skyline img { object-position: 50% 82%; }
+.lens__item--hotel img { object-position: 50% 60%; }
 .lens__labels { position: absolute; inset: 38% var(--rb-gutter) auto; display: flex; justify-content: space-between; pointer-events: none; }
 .lens__labels span { font-size: 10px; font-weight: 550; line-height: 1; text-transform: uppercase; writing-mode: vertical-rl; }
 .lens__labels span:last-child { margin-top: 240px; }
@@ -383,15 +390,15 @@ body.alaba-home {
   .craft { padding-top: 54px; padding-bottom: 80px; }
   .mega-line { font-size: 17vw; }
   .craft__moments { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px 14px; margin-top: 28px; }
-  .craft-shot--cafe { grid-column: 1 / 6; grid-row: 1; }
+  .craft-shot--arrival { grid-column: 1 / 6; grid-row: 1; }
   .craft-shot--friends { grid-column: 4 / -1; grid-row: 2; margin-top: 0; }
   .craft__aside { grid-column: 1 / 4; grid-row: 2; padding-right: 8px; font-size: 15px; line-height: 1.45; }
   .craft__balance { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 30px 14px; margin-top: 64px; }
   .craft__balance-title { gap: 8px; }
   .craft__balance-title .mega-line { font-size: 13.6vw; }
   .craft-shot--life { grid-column: 1 / 5; grid-row: 2; }
-  .craft-shot--coffee { grid-column: 5 / -1; grid-row: 2; align-self: center; margin-top: 0; }
-  .craft-shot--table { grid-column: 2 / -1; grid-row: 3; }
+  .craft-shot--taillight { grid-column: 4 / -1; grid-row: 3; margin-top: -12px; }
+  .craft-shot--tailoring { grid-column: 1 / 6; grid-row: 4; margin-top: 0; }
   .lens { padding-top: 72px; padding-bottom: 96px; }
   .lens__heading { display: block; }
   .lens__heading h2 { font-size: 14.8vw; }
@@ -400,6 +407,7 @@ body.alaba-home {
   .lens__item:nth-child(n) { grid-column: auto; margin-top: 0; aspect-ratio: 3 / 4; }
   .lens__item:nth-child(even) { margin-top: 48px; }
   .lens__item:first-child { aspect-ratio: 2 / 3; }
+  .lens__item--hotel:nth-child(7) { grid-column: 1 / -1; width: 62%; margin: 0 auto; }
   .lens__labels { top: 40%; right: 8px; left: 8px; }
   .lens__labels span { font-size: 9px; }
   .lens__labels span:last-child { margin-top: 120px; }
