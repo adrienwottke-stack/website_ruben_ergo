@@ -75,7 +75,7 @@ export function initScroll() {
       // The home menu closes and restores focus before it handles its anchors.
       if (a.closest(".alaba-home #navMenu")) return;
       const id = a.getAttribute("href");
-      if (!id || id === "#") return;
+      if (!id?.startsWith("#") || id === "#") return;
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();

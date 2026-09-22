@@ -1,10 +1,15 @@
 /* =========================================================================
    RUBEN · Persönlicher Kontakt
    Baut den wa.me-Link aus dem optionalen Ort und der persönlichen Nachricht.
-   Der Nutzer sieht die Nachricht in WhatsApp und entscheidet selbst
-   über das Absenden — hier wird nichts übertragen oder gespeichert.
+   Eingaben bleiben auf der Seite, ohne eigenen Speicher oder Versand.
+   Erst der Link übergibt den Entwurf an WhatsApp; dort entscheidet der
+   Nutzer selbst über das Absenden.
    ========================================================================= */
 import { CONFIG } from "../config.js";
+
+const DEFAULT_MESSAGE = "Hey Ruben! Ich bin über deine Website hier und würde gern mehr über deinen Alltag erfahren.";
+const CALCULATOR_MESSAGE = "Hey Ruben! Ich habe deinen Zinsrechner ausprobiert und habe eine Frage dazu.";
+const messageForTopic = (topic) => topic === "rechner" ? CALCULATOR_MESSAGE : DEFAULT_MESSAGE;
 
 const waLink = (text) =>
   `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`;
@@ -17,14 +22,23 @@ export function initWhatsApp() {
   const messageInput = form.querySelector("#visionMessage");
   const waButton = document.getElementById("waButton");
   if (!waButton || !messageInput) return;
-  let selectedPlace = "";
+
+  // Seed only a fresh visit. History restoration may bring back an intentionally
+  // empty field, so neither back/forward nor reload should insert another draft.
+  const navigation = performance.getEntriesByType("navigation")[0];
+  const isFreshVisit = !navigation || navigation.type === "navigate";
+  const topic = new URLSearchParams(location.search).get("thema");
+  if (isFreshVisit && topic === "rechner" && !messageInput.value) {
+    messageInput.value = CALCULATOR_MESSAGE;
+  }
 
   const buildMessage = () => {
-    const parts = ["Hey Ruben!"];
+    // An edited message is already complete; do not prepend a second greeting.
+    const parts = [messageInput.value.trim() || DEFAULT_MESSAGE];
+    const selectedPlace = Array.from(ortChips)
+      .find((chip) => chip.getAttribute("aria-pressed") === "true")?.dataset.ort;
     if (selectedPlace === "Woanders") parts.push("Ich komme nicht direkt aus Leipzig.");
     else if (selectedPlace) parts.push(`Ich komme aus ${selectedPlace}.`);
-    const message = messageInput.value.trim();
-    parts.push(message || "Ich würde mich gerne mit dir austauschen.");
     return parts.join("\n\n");
   };
 
@@ -35,13 +49,11 @@ export function initWhatsApp() {
   // Frage 1: Ort — Einfachauswahl, nochmal tippen wählt ab
   ortChips.forEach((chip) => {
     chip.addEventListener("click", () => {
-      const ort = chip.dataset.ort;
       const wasActive = chip.classList.contains("is-active");
       ortChips.forEach((c) => {
         c.classList.remove("is-active");
         c.setAttribute("aria-pressed", "false");
       });
-      selectedPlace = wasActive ? "" : ort;
       if (!wasActive) {
         chip.classList.add("is-active");
         chip.setAttribute("aria-pressed", "true");
@@ -52,6 +64,9 @@ export function initWhatsApp() {
 
   messageInput.addEventListener("input", refresh);
   form.addEventListener("submit", (event) => event.preventDefault());
+  // Refresh restored form values without ever reseeding or rewriting the field.
+  window.addEventListener("pageshow", refresh);
+  waButton.addEventListener("click", refresh);
 
   refresh();
 }
@@ -66,14 +81,24 @@ export function applyConfig() {
       case "instagramHandle":
         el.textContent = CONFIG.instagramHandle;
         break;
-      case "email":
+      case "email": {
         el.href = `mailto:${CONFIG.email}`;
-        if (el.textContent.includes("[")) el.textContent = CONFIG.email.includes("PLATZHALTER") ? "[E-Mail folgt]" : CONFIG.email;
+        const value = el.querySelector('[data-config-value="email"]');
+        const label = CONFIG.email.includes("PLATZHALTER") ? "[E-Mail folgt]" : CONFIG.email;
+        if (value) value.textContent = label;
+        else if (!el.children.length && el.textContent.includes("[")) el.textContent = label;
+        break;
+      }
+      case "waDirect":
+        el.href = waLink(messageForTopic(el.dataset.waTopic));
         break;
       case "waPlain": {
-        const isPlaceholder = /X/.test(CONFIG.whatsappNumber);
-        el.href = waLink("Hey Ruben! 👋");
-        el.textContent = isPlaceholder ? "WhatsApp: [Nummer folgt]" : `WhatsApp: +${CONFIG.whatsappNumber}`;
+        const isPlaceholder = !/^[1-9]\d{6,14}$/.test(CONFIG.whatsappNumber);
+        const label = isPlaceholder ? "[Nummer folgt]" : `+${CONFIG.whatsappNumber}`;
+        el.href = waLink(messageForTopic(el.dataset.waTopic));
+        const value = el.querySelector('[data-config-value="whatsapp"]');
+        if (value) value.textContent = label;
+        else if (!el.children.length) el.textContent = `WhatsApp: ${label}`;
         break;
       }
     }

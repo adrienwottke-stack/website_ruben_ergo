@@ -1,19 +1,19 @@
 /* =========================================================================
-   RUBEN · Zentrale Platzhalter-Konfiguration
-   Adrien: Vor Livegang NUR diese Datei mit echten Daten füllen —
-   alle Stellen auf der Seite ziehen sich die Werte von hier.
+   RUBEN · Zentrale Kontakt-Konfiguration
+   Bestätigte Kontaktdaten; dynamische Links beziehen ihre Werte von hier.
+   Statische HTML-Fallbacks bei Änderungen der Kontaktdaten mit aktualisieren.
    ========================================================================= */
 export const CONFIG = {
   // WhatsApp im internationalen Format ohne "+" und ohne Leerzeichen,
-  // z. B. "4915112345678"  — [Platzhalter]
-  whatsappNumber: "49XXXXXXXXXXX",
+  // Bestätigte Nummer: +49 176 47178532
+  whatsappNumber: "4917647178532",
 
-  // Instagram — [Platzhalter]
-  instagramHandle: "@[instagram-handle]",
-  instagramUrl: "https://instagram.com/PLATZHALTER_INSTAGRAM",
+  // Instagram
+  instagramHandle: "@ruben.khr",
+  instagramUrl: "https://www.instagram.com/ruben.khr/",
 
-  // Kontakt — [Platzhalter]
-  email: "PLATZHALTER@MAIL.DE",
+  // Kontakt
+  email: "ruben_koehler04@yahoo.com",
 
   // Standorte für Karte + Liste (echte Lon/Lat — Pins werden automatisch
   // auf die Bundesländer-Karte projiziert; einfach Städte ergänzen).

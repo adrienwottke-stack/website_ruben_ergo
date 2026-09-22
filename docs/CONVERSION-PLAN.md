@@ -1,12 +1,12 @@
 # Ruben: Instagram-Besuch zum persönlichen Gespräch
 
-Stand: 21.09.2026. Status: Plan, keine Umsetzung an der Website.
+Stand: 22.09.2026. Status: Zur Umsetzung freigegeben, umgesetzt und für die Veröffentlichung vorbereitet. Prüfung und verbleibende Grenzen stehen in CONVERSION-QA.md. Die Veröffentlichung wird über den Git-/Vercel-Status des zugehörigen Commits verifiziert.
 
 ## Ziel und Arbeitsannahme
 
 Besucher von Instagram sollen verstehen, weshalb sie Ruben anschreiben können, und über die vorhandenen Kontaktmöglichkeiten unkompliziert zu WhatsApp gelangen.
 
-Vorläufiger Hauptanlass: Rubens beruflichen Alltag kennenlernen und ein persönliches Gespräch beginnen. Die Entscheidung zwischen beruflichem Interesse/Zusammenarbeit, Finanzthemen oder allgemeinem Kennenlernen wurde angefragt und steht noch aus. Der Plan bleibt ausführbar vorbereitet; bestätigte Aussagen zu Rubens Tätigkeit werden vor dem endgültigen Text eingesetzt. Finanzinteresse erhält über den bestehenden Rechner einen eigenen Gesprächskontext.
+Umgesetzter Hauptanlass aus dem freigegebenen Plan: Rubens Alltag kennenlernen und ein persönliches Gespräch beginnen. Ein konkreter Tätigkeitssatz wurde nicht ergänzt, da hierzu keine bestätigte Angabe vorliegt. Finanzinteresse erhält über den bestehenden Rechner einen eigenen Gesprächskontext.
 
 Keine Erfolgszahlen, Leistungsversprechen, offenen Stellen, Antwortzeiten oder Aussagen über Rubens Tätigkeit erfinden. Die alte README mit Emil-Bezügen ist keine ausreichende Faktenquelle für Rubens Positionierung.
 
@@ -50,7 +50,7 @@ Den tatsächlichen Arbeitsstand vor Umsetzung sichern; keine vorhandenen Änderu
 - Gewünschter Hauptanlass der Kontaktaufnahme.
 - Ein bestätigter, kurzer Satz dazu, was Ruben beruflich macht und worüber Interessierte ihn ansprechen können.
 
-Solange diese Daten fehlen, bleibt die betreffende Aufgabe vorbereitet. Keine Ersatzdaten und kein behaupteter vollständiger Kontakt-Erfolg.
+Die Kontaktdaten wurden vom Nutzer bestätigt und eingesetzt: +49 176 47178532, @ruben.khr und ruben_koehler04@yahoo.com. Der kurze bestätigte Tätigkeitssatz ist weiterhin optional offen; die freigegebene Einladung zum Kennenlernen wurde ohne zusätzliche Behauptungen umgesetzt.
 
 ## Paket 2: Konkreter Textentwurf
 
@@ -59,9 +59,9 @@ Die folgenden Änderungen verwenden ausschließlich vorhandene Textplätze. Schr
 | Textplatz | Vorgesehener Wortlaut |
 |---|---|
 | Kleines Hero-Statement | Mein Alltag in Leipzig. Beruflich und privat. / Neugierig geworden? Schreib mir auf WhatsApp. |
-| Bildbegleittext | Mein Alltag, meine Kollegen. / Frag mich, was dich interessiert. |
+| Bildbegleittext | Ein paar Momente aus meinem Alltag. / Frag mich gern, was dich daran interessiert. |
 | Kontaktüberschrift | Lass uns / sprechen. |
-| Kontakt-Einleitung | Fragen zu meinem Alltag? / Ein einfaches Hey reicht. |
+| Kontakt-Einleitung | Fragen zu meinem Alltag? / Ein einfaches Hey reicht zum Start. |
 | Ortsfrage | Dein Ort (optional) |
 | Ortsauswahl | Leipzig / Woanders, unverändert |
 | Nachrichtenfeld | Deine Frage; bestehende Kennzeichnung Optional erhalten |
